@@ -28,6 +28,7 @@ describe("Community Fund", function () {
         fundName, requiredNbOfParticipants, recurringAmount, startDate, duration
       )
       const CommunityFund = await ethers.getContractFactory("CommunityFund");
+      await deployCommunityFund.wait();
 
       communityFund = CommunityFund.attach((await deployCommunityFund.wait()).events[0].args.communityFundAddress);
       communityFund.connect(firstParticipant);
@@ -53,7 +54,7 @@ describe("Community Fund", function () {
 
     const expected = recurringAmount + collateral;
     it("Should have exactly " + expected + " deposited in the fund from one participant", async  ()=> {
-      const receipt  = await communityFund.deposit({ value: recurringAmount });
+      const receipt = await communityFund.deposit({ value: recurringAmount });
       await receipt.wait();
       expect((await communityFund.participants(firstParticipant.address)).balance).to.equal(expected);
     });
@@ -81,11 +82,19 @@ describe("Community Fund", function () {
     it("Should have exactly " + 2 * expected + " in the fund after the 2nd deposit", async  ()=> {
       expect(await hre.ethers.provider.getBalance(communityFund.address)).to.equal(2 * expected);
     });
+
+    it("Should have exactly " + expected + " in the fund after the 1st withdrawal", async  ()=> {
+      const receipt = await communityFund.withdraw();
+      await receipt.wait();
+      expect(await hre.ethers.provider.getBalance(communityFund.address)).to.equal(expected);
+    });
   });
 
   describe("Starting a Community Fund with Collateral", function () {
     it("Should create a Community Fund and commit Collateral", async  ()=> {
       const expected = recurringAmount * duration * 1.2;
+      communityFundFactory.connect(firstParticipant);
+
       const deployCommunityFund = await communityFundFactory.createCommunityFund(
         fundName, requiredNbOfParticipants, recurringAmount, startDate, duration, { value: expected }
       )
