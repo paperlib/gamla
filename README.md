@@ -1,15 +1,9 @@
-# Gamla / Community Fund Project
+# Gamla: Community Fund Dapp
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+> [Gamla](https://devfolio.co/projects/gamlafund-5970) is a community driven savings and lending/crowd-sourced micro-credit dapp.
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+<h3 align="center"><a href="https://buidlit.devfolio.co/projects?prizes=71bac7148ee9424aa341de07759ac527&show_winners=true">Winner</a> 🥇<br>
+of <a href="https://polygon.technology">Polygon</a>'s <a href="https://polygon.technology/blog/polygon-presents-buidl-it-indias-largest-web3-hackathon">Wed3 Hackaton</a> [DeFi Track]</h3>
+<p align="center" style="font-size: 2.5em">
+  <img src="https://cdn.prod.website-files.com/637e2b6d602973ea0941d482/63a19cb6cec49e3e5686d5ed_Blogspot-banner-1-p-1600.webp" alt="Winner: Polygon Hackaton (DeFi Track)" width="50%" />
+</p>
